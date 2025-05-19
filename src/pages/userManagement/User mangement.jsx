@@ -1,127 +1,180 @@
-import React from "react";
-// import { Card, CardContent } from "@/components/ui/card";
-// import { CheckCircle, Clock, Users, XCircle } from "lucide-react";
+import React, { useState } from "react";
+import { Card, Col, Image, Input  } from 'antd';
+import { DownOutlined, UserOutlined } from '@ant-design/icons';
+import { Button, Dropdown, message, Space } from 'antd';
+
+
+
+const { Search } = Input;
 
 export default function UserMangement() {
+  const [selectedLabel, setSelectedLabel] = useState('User State'); 
+
+  const items = [
+    {
+      key: '1',
+      icon: <UserOutlined  />,
+      label: <span >All Users</span>,
+    },
+    {
+      key: '2',
+      icon: <UserOutlined style={{ color: 'green' }} />,
+      label: <span style={{ color: 'green' }}>Active Users</span>,
+    },
+    {
+      key: '3',
+      icon: <UserOutlined style={{ color: 'orange' }} />,
+      label: <span style={{ color: 'orange' }}>Pending Users</span>,
+    },
+    {
+      key: '4',
+      icon: <UserOutlined style={{ color: 'red' }} />,
+      label: <span style={{ color: 'red' }}>Inactive Users</span>,
+    },
+
+  ];
+
+  const handleMenuClick = (e) => {
+    const selectedItem = items.find((item) => item.key === e.key);
+    if (selectedItem) {
+      setSelectedLabel(selectedItem.label);
+      message.info(`Selected: ${selectedItem.label}`);
+    }
+  };
+
+  const menuProps = {
+    items,
+    onClick: handleMenuClick,
+  };
+
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6">Mangement</h1>
+    <div className="p-6 max-h-screen">
+      <h1 className="text-3xl font-bold text-[#000000] mb-6">User Management</h1>
+      <div className="flex flex-row items-center ">
+        <div className="w-[25%]">
+            <Search placeholder="Search by ID or Name" style={{ maxWidth: '100%' }}  size="large" className="mb-2 h-10"
+              enterButton={
+                <button className="bg-[#13A4B4] hover:bg-[#7c9ece] text-white px-4  rounded-[0px_10px_10px_0px] h-10">
+                  Search
+                </button>
+              }
+            />
+        </div>
+        <Dropdown menu={menuProps} className="mt-[-8px] ml-4">
+          <Button size="large">
+            <Space>
+              {selectedLabel}
+              <DownOutlined />
+            </Space>
+          </Button>
+        </Dropdown> 
+        <div>
+        <div className="mt-[-8px] ml-4 text-[#000000] font-bold">
+          Total Records : 452
+        </div>
+        </div>
+      </div>
 
-      {/* Summary Cards */}
-      {/* <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        <Card>
-          <CardContent className="flex items-center gap-4 p-4">
-            <Users className="w-6 h-6 text-gray-600" />
-            <div>
-              <p className="text-gray-600 text-sm">Total Users</p>
-              <p className="text-lg font-bold">100,000</p>
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="flex items-center gap-4 p-4">
-            <CheckCircle className="w-6 h-6 text-green-600" />
-            <div>
-              <p className="text-gray-600 text-sm">Verified IDs</p>
-              <p className="text-lg font-bold">90,000</p>
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="flex items-center gap-4 p-4">
-            <Clock className="w-6 h-6 text-yellow-600" />
-            <div>
-              <p className="text-gray-600 text-sm">Pending IDs</p>
-              <p className="text-lg font-bold">9,000</p>
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="flex items-center gap-4 p-4">
-            <XCircle className="w-6 h-6 text-red-600" />
-            <div>
-              <p className="text-gray-600 text-sm">Rejected IDs</p>
-              <p className="text-lg font-bold">1,000</p>
-            </div>
-          </CardContent>
-        </Card>
-      </div> */}
+      <Col span={24} >
+        <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 mb-4">
 
-      {/* Authentication Status & Recent Activities */}
-      {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
-        <Card>
-          <CardContent className="p-4">
-            <h2 className="text-lg font-semibold mb-2">
-              Authentication Status
-            </h2>
-            <div className="flex justify-between mb-2">
-              <div>
-                <p className="text-blue-600 font-bold text-xl">51.5%</p>
-                <p className="text-sm text-gray-600">Success</p>
-                <p className="text-xs text-gray-500">101,123</p>
-              </div>
-              <div>
-                <p className="text-yellow-600 font-bold text-xl">48.5%</p>
-                <p className="text-sm text-gray-600">Unsuccess</p>
-                <p className="text-xs text-gray-500">90,327</p>
-              </div>
+            {/* ID */}
+            <div className="w-full sm:w-[15%] ml-4">
+              <p className="text-lg font-bold text-[#000000]" >CARD ID</p>
             </div>
-            <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
-              <div
-                className="bg-blue-500 h-full"
-                style={{ width: "51.5%" }}
-              ></div>
+
+            {/* Name & Role */}
+            <div className="w-full sm:w-[20%]">
+              <p className="text-lg font-bold text-[#000000]" >FRONT FIELD</p>
             </div>
-            <p className="text-xs text-gray-500 mt-2">
-              How performed over the last 30 days
-            </p>
-          </CardContent>
-        </Card>
 
-        <Card>
-          <CardContent className="p-4">
-            <h2 className="text-lg font-semibold mb-2">Recent Activities</h2>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <strong>Nuwan Thushara</strong>{" "}
-                <span className="text-gray-600">nuwanthushara@gmail.com</span>{" "}
-                <span className="text-green-600 font-semibold">Verified</span>
-              </li>
-              <li>
-                <strong>Thilini Jayakodi</strong>{" "}
-                <span className="text-gray-600">Thilini123@gmail.com</span>{" "}
-                <span className="text-red-600 font-semibold">Rejected</span>
-              </li>
-              <li>
-                <strong>Lahiru Kumara</strong>{" "}
-                <span className="text-gray-600">lahirukumara@gmail.com</span>{" "}
-                <span className="text-green-600 font-semibold">Verified</span>
-              </li>
-              <li>
-                <strong>Nilan Tharanga</strong>{" "}
-                <span className="text-gray-600">tharanganilan@gmail.com</span>{" "}
-                <span className="text-yellow-600 font-semibold">Pending</span>
-              </li>
-            </ul>
-          </CardContent>
-        </Card>
-      </div> */}
+            {/* Image */}
+            <div className="w-full sm:w-[15%] ">
+              <p className="text-lg font-bold text-[#000000]" >ID PHOTO</p>
+            </div>
 
-      {/* User Growth Chart Placeholder */}
-      {/* <Card>
-        <CardContent className="p-4">
-          <h2 className="text-lg font-semibold mb-2">User Growth</h2>
-          <p className="text-sm text-gray-500 mb-4">Chart placeholder</p>
-          <div className="h-40 bg-gray-100 rounded-md flex items-center justify-center text-gray-400">
-            Chart Coming Soon
+            {/* Status */}
+            <div className="w-full sm:w-[15%]">
+              <p className="text-lg font-bold text-[#000000]" >STATUS</p>
+            </div>
+
+            {/* Date & Time */}
+            <div className="w-full sm:w-[15%]">
+              <p className="text-lg font-bold text-[#000000]" >ISSUED DATE</p>
+            </div>
+
           </div>
-          <div className="flex justify-between text-xs text-gray-500 mt-4">
-            <p>Rejected Trend: 1254</p>
-            <p>Approval Trend: 2549</p>
-            <p>Registration Trend: 3874</p>
+        <Card variant="borderless" bodyStyle={{ padding: '10px', marginBottom: '10px' }} >
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4">
+
+            {/* ID */}
+            <div className="w-full sm:w-[15%] ml-4">
+              <p className="text-lg font-bold">996751789 V</p>
+            </div>
+
+            {/* Name & Role */}
+            <div className="w-full sm:w-[20%]">
+              <p className="text-lg font-bold">Prabath Malinda</p>
+              <p className="text-gray-600 text-sm mt-1">Teacher</p>
+            </div>
+
+            {/* Image */}
+            <div className="w-full sm:w-[15%] ">
+              <Image
+                width={50}
+                src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+              />
+            </div>
+
+            {/* Status */}
+            <div className="w-full sm:w-[15%]">
+              <p className="text-sm mt-2 bg-green-600 text-white p-2 text-center rounded w-[50%]">Active</p>
+            </div>
+
+            {/* Date & Time */}
+            <div className="w-full sm:w-[15%]">
+              <p className="text-lg font-semibold">Jan 27, 2026</p>
+              <p className="text-lg mt-1 font-semibold">12.00 AM</p>
+            </div>
+
           </div>
-        </CardContent>
-      </Card> */}
+        </Card>
+        <Card variant="borderless" bodyStyle={{ padding: '10px', marginBottom: '10px' }} >
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4">
+
+            {/* ID */}
+            <div className="w-full sm:w-[15%] ml-4 ">
+              <p className="text-lg font-bold">996751789 V</p>
+            </div>
+
+            {/* Name & Role */}
+            <div className="w-full sm:w-[20%]">
+              <p className="text-lg font-bold">Prabath Malinda</p>
+              <p className="text-gray-600 text-sm mt-1">Teacher</p>
+            </div>
+
+            {/* Image */}
+            <div className="w-full sm:w-[15%] ">
+              <Image
+                width={50}
+                src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+              />
+            </div>
+
+            {/* Status */}
+            <div className="w-full sm:w-[15%]">
+              <p className="text-sm mt-2 bg-green-600 text-white p-2 text-center rounded w-[50%]">Active</p>
+            </div>
+
+            {/* Date & Time */}
+            <div className="w-full sm:w-[15%]">
+              <p className="text-lg font-semibold">Jan 27, 2026</p>
+              <p className="text-lg mt-1 font-semibold">12.00 AM</p>
+            </div>
+
+          </div>
+        </Card>
+      </Col>
     </div>
   );
 }

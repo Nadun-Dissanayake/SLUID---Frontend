@@ -6,6 +6,7 @@ import UserMangement from "../pages/userManagement/User mangement";
 import IdVerification from "../pages/idVerification/idVerification";
 import PendingIds from "../pages/pendingId/PendingIds";
 import ReportAnalytic from "../pages/reportAnalitic/reportAnalytic";
+import PersonalDetails from "../pages/personalDetails/personalDetails";
 
 // import MainLayout from "../pages/mainLayout/MainLayout";
 
@@ -20,6 +21,7 @@ export default function RouterSet() {
         <Route path="/idverification" element={<IdVerification />} />
         <Route path="/pending" element={<PendingIds />} />
         <Route path="/analatic" element={<ReportAnalytic />} />
+        <Route path="/personalDetails" element={<PersonalDetails />} />
       </Route>
     </Routes>
   );

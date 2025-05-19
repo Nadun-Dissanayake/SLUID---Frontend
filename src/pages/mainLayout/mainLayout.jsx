@@ -172,13 +172,13 @@ export default function MainLayout() {
   }, []);
 
   return (
-    <div
-      className={`w-full max-w-screen min-h-screen h-full flex items-center justify-start overflow-hidden`}
+    <div 
+      className={`w-full max-w-screen min-h-screen h-full flex items-center justify-start overflow-hidden `} 
     >
       <div
         className={`${
           collapsed ? "w-[82px]" : "w-[270px]"
-        } min-h-dvh bg-colorSelected border-r-[2px] shadow-md relative transition-all duration-300 ease-in-out z-10 `}
+        } min-h-dvh bg-colorSelected border-r-[2px] shadow-md relative transition-all duration-300 ease-in-out z-10`}
       >
         <div
           className={`flex flex-col items-center justify-center gap-1  ${
@@ -223,13 +223,13 @@ export default function MainLayout() {
         />
 
         <div
-          className="w-full min-h-dvh flex flex-col flex-grow items-center justify-start px-2 pb-2  overflow-auto scroll bg-[#F1F5F9]"
+          className=" w-full flex flex-col items-center justify-start px-2 pb-2 overflow-auto scroll bg-[#F1F5F9] "
           style={{
             minHeight: containerHeight,
             maxHeight: containerHeight,
           }}
         >
-          <div className="w-full flex-col items-center justify-start sm:w-[90%] lg:w-[80%]">
+          <div className="w-full flex-col items-center justify-start sm:w-[90%] lg:w-[95%] ">
             <Outlet />
           </div>
         </div>
