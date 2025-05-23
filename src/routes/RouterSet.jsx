@@ -7,6 +7,7 @@ import IdVerification from "../pages/idVerification/idVerification";
 import PendingIds from "../pages/pendingId/PendingIds";
 import ReportAnalytic from "../pages/reportAnalitic/reportAnalytic";
 import PersonalDetails from "../pages/personalDetails/personalDetails";
+import Signup from "../pages/signup/Signup";
 
 // import MainLayout from "../pages/mainLayout/MainLayout";
 
@@ -14,6 +15,7 @@ export default function RouterSet() {
   return (
     <Routes>
       <Route path="/sign-in" element={<Signin />} />
+      <Route path="/sign-up" element={<Signup />} />
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Navigate to="/dashboard" />} />
         <Route path="/dashboard" element={<Dashboard />} />
