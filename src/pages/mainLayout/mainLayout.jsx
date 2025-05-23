@@ -172,8 +172,8 @@ export default function MainLayout() {
   }, []);
 
   return (
-    <div 
-      className={`w-full max-w-screen min-h-screen h-full flex items-center justify-start overflow-hidden `} 
+    <div
+      className={`w-full max-w-screen min-h-screen h-full flex items-center justify-start overflow-hidden `}
     >
       <div
         className={`${

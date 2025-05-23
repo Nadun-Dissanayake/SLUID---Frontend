@@ -3,7 +3,7 @@ import RouterSet from "./routes/RouterSet";
 
 function App() {
   const algorithm = "light";
-  const primary = "#05164C";
+  const primary = "#13A4B4";
   const themeColor = "#FFFFFF";
 
   return (
