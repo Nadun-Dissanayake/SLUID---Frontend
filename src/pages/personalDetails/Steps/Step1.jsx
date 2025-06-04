@@ -11,7 +11,7 @@ export default function Step1() {
   const completedSteps = useSelector((state) => state.step.completedSteps);
 
   return (
-    <div className="w-7/8 bg-[#ffffff] p-6 mt-10 ">
+    <div className="w-2/3 bg-[#ffffff] p-6 mt-10 ">
       <Form className="w-full ">
         <div className="flex flex-col w-full">
           <Text className="t-16 text-black font-medium ">Full Name :</Text>
